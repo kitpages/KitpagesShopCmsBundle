@@ -1,0 +1,27 @@
+{
+    "name": "kitpages/shop-cms-bundle",
+    "type": "symfony-bundle",
+    "description": "catalog of product for the Kitpages CMS Bundle",
+    "keywords": ["catalog", "kitpages cms"],
+    "homepage": "https://github.com/kitpages/KitpagesShopCmsBundle",
+    "license": "BSD",
+    "authors": [
+        {
+            "name": "Sebastien Lefebvre"
+        },
+        {
+            "name": "Philippe Le Van",
+            "homepage": "https://twitter.com/#!/plv"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": "2.1.*",
+        "avalanche123/imagine-bundle": "*",
+        "kitpages/cms-bundle": "2.1.*"
+    },
+    "autoload": {
+        "psr-0": { "Kitpages\\ShopCmsBundle": "" }
+    },
+    "target-dir": "Kitpages/ShopCmsBundle"
+}
