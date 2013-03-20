@@ -2,11 +2,11 @@
 namespace Kitpages\ShopCmsBundle\Form\Block;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 
 class Product extends AbstractType
 {
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
         $builder->add(
@@ -27,6 +27,18 @@ class Product extends AbstractType
             array(
                 'label' => 'Sub-title',
                 'required' => false,
+                'attr' => array(
+                    "size" => "50"
+                )
+            )
+        );
+
+        $builder->add(
+            'price',
+            'text',
+            array(
+                'label' => 'Price',
+                'required' => true,
                 'attr' => array(
                     "size" => "50"
                 )

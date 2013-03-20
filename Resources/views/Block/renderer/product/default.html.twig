@@ -21,7 +21,7 @@
     {% endif %}
 
     {% if data.root.title|default('') %}<h2>{{data.root.title}}</h2>{% endif %}
-    {% if data.root.subtitle|default('') %}<h3>{{data.root.subtitle}}</h3>{% endif %}
+    {% if data.root.subtitle|default('') %}<h3>{{data.root.subtitle}} {{data.root.price}}</h3>{% endif %}
 
     {% if (data.root.titleAboveFloat|default('') != "NO") %}
         {% if (imgPos == "left") or (imgPos == "right") %}
