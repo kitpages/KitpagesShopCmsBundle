@@ -1,8 +1,12 @@
 <?php
 namespace Kitpages\ShopCmsBundle\Form\Block;
 
+use Kitpages\ShopCmsBundle\Form\Type\CategoryType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Min;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\ChoiceValidator;
 
 class Product extends AbstractType
 {
@@ -10,10 +14,10 @@ class Product extends AbstractType
     {
 
         $builder->add(
-            'title',
+            'name',
             'text',
             array(
-                'label' => 'Title',
+                'label' => 'Name',
                 'required' => false,
                 'attr' => array(
                     "size" => "50"
@@ -21,15 +25,32 @@ class Product extends AbstractType
             )
         );
 
+//        $builder->add(
+//            'category',
+//            'text',
+//            array(
+//                'label' => 'Category',
+//                'required' => false,
+//                'attr' => array(
+//                    "size" => "50"
+//                )
+//            )
+//        );
+
         $builder->add(
-            'subtitle',
-            'text',
+            'category',
+            'category',
             array(
-                'label' => 'Sub-title',
+                'label' => 'Category',
                 'required' => false,
-                'attr' => array(
-                    "size" => "50"
-                )
+//                'choice_list'   => array(
+//                    'Vêtement garçon-3 mois' => 'Left',
+//                    'right' => 'Right',
+//                    'top' => 'Top',
+//                    'center' => 'Centered',
+//                    'bottom' => 'Bottom',
+//                    'hidden' => 'Hidden'
+//                ),
             )
         );
 
@@ -40,16 +61,17 @@ class Product extends AbstractType
                 'label' => 'Price',
                 'required' => true,
                 'attr' => array(
-                    "size" => "50"
-                )
+                    "size" => "50",
+                ),
+                'constraints' => new Min(array('limit' => 0))
             )
         );
 
         $builder->add(
-            'mainContent',
+            'description',
             'textarea',
             array(
-                'label' => 'Main content',
+                'label' => 'Description',
                 'required' => false,
                 'attr' => array(
                     "class" => "kit-cms-rte-advanced"
@@ -145,7 +167,7 @@ class Product extends AbstractType
 
     public function filterList() {
         return array(
-            'mainContent' => 'stripTagText',
+            'description' => 'stripTagText',
             'subContent' => 'stripTagText',
         );
     }

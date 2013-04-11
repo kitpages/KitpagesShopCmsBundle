@@ -4,6 +4,19 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+    <services>
+        <service id="kitpages_shop_cms.twig.extension" class="Kitpages\ShopCmsBundle\Twig\Extension\ShopCmsExtension">
+            <argument>%kitpages_shop_cms.category_list%</argument>
+            <tag name="twig.extension" />
+        </service>
+        <service id="kitpages_shop_cms.form.type.category" class="Kitpages\ShopCmsBundle\Form\Type\CategoryType">
+            <argument>%kitpages_shop_cms.category_list%</argument>
+            <tag name="form.type" alias="category" />
+        </service>
+    </services>
+
+
+
     <!--
     <parameters>
         <parameter key="kitpages_shop_cms.example.class">Kitpages\ShopCmsBundle\Example</parameter>

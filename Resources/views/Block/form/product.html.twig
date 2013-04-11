@@ -2,14 +2,19 @@
 
 {% block editData %}
 
-{{ form_row(
-    form.data.root.title,
-    {'help' : "Title of the block (title level 1)"}
-) }}
+{#{% form_theme form 'KitpagesShopCmsBundle:Form:fields.html.twig' %}#}
 
 {{ form_row(
-    form.data.root.subtitle,
-    {'help' : "Sub title of the block (title level 2)"}
+    form.data.root.name,
+    {'help' : "Name of product"}
+) }}
+
+
+{{ form_row(
+    form.data.root.category,
+    {
+        'help' : "Category of product (book, CD ...)"
+    }
 ) }}
 
 {{ form_row(
@@ -39,7 +44,7 @@
 ) }}
 
 {{ form_row(
-    form.data.root.mainContent,
+    form.data.root.description,
     {'help' : "Content displayed around the image"}
 ) }}
 

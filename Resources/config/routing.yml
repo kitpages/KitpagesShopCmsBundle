@@ -1,0 +1,3 @@
+KitpagesShopCmsBundlee_addToCart:
+    pattern: /shop/addToCart/{blockId}
+    defaults: { _controller: KitpagesShopCmsBundle:Product:addToCart }

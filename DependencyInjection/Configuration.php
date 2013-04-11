@@ -3,6 +3,7 @@
 namespace Kitpages\ShopCmsBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
@@ -20,10 +21,40 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('kitpages_shop_cms');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $this->addGeneralSection($rootNode);
 
         return $treeBuilder;
     }
+
+    /**
+     * Parses the kitpages_cms others sections
+     * Example for yaml driver:
+     * kitpages_shop:
+     *     target_parameter: 'cms_target'
+     *
+     * @param ArrayNodeDefinition $node
+     * @return void
+     */
+    private function addGeneralSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->arrayNode('category_list')
+                    ->useAttributeAsKey('category')
+                        ->prototype('array')
+                        ->children()
+                            ->scalarNode('category_name')
+                                ->cannotBeEmpty()
+                            ->end()
+                            ->arrayNode('subcategory_list')
+                                ->prototype('scalar')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+
+
+            ->end();
+    }
+
 }

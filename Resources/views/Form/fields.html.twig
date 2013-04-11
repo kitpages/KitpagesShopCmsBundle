@@ -1,0 +1,14 @@
+{% block choice_widget_options %}
+{% spaceless %}
+    {% for group_label, choice in options %}
+        {% if choice.value is defined %}
+            <option value="{{ choice.value }}"{% if choice.value == value %} selected="selected"{% endif %}>{{ choice.label|trans({}, translation_domain) }}</option>
+        {% else %}
+            <optgroup label="{{ group_label|trans({}, translation_domain) }}">
+                {% set options = choice %}
+                {{ block('choice_widget_options') }}
+            </optgroup>
+        {% endif %}
+    {% endfor %}
+{% endspaceless %}
+{% endblock choice_widget_options %}

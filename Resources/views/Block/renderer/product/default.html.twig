@@ -20,8 +20,8 @@
 
     {% endif %}
 
-    {% if data.root.title|default('') %}<h2>{{data.root.title}}</h2>{% endif %}
-    {% if data.root.subtitle|default('') %}<h3>{{data.root.subtitle}} {{data.root.price}}</h3>{% endif %}
+    {% if data.root.name|default('') %}<h2>{{data.root.name}}</h2>{% endif %}
+    {% if data.root.category|default('') %}<h3>{{data.root.category}} {% if data.root.subcategory|default('') %}- {{data.root.subcategory}} {% endif %}{{data.root.price}}</h3>{% endif %}
 
     {% if (data.root.titleAboveFloat|default('') != "NO") %}
         {% if (imgPos == "left") or (imgPos == "right") %}
@@ -60,7 +60,7 @@
     {% endif %}
 
 
-    {% if data.root.mainContent|default('') %}<div>{{data.root.mainContent}}</div>{%endif%}
+    {% if data.root.description|default('') %}<div>{{data.root.description}}</div>{%endif%}
 
     {% if ( (imgPos == "left") or (imgPos == "right") ) and (img) %}
         <div style="clear:{{imgPos}};"></div>
@@ -80,6 +80,7 @@
     {% endif %}
 
     {% if data.root.displaySeparator|default('NO') == "YES" %}<div class="app-separator"></div>{% endif %}
+    <div class="kit-shop-cms-price"><a href="{{ path ("KitpagesShopCmsBundlee_addToCart", {"blockId": data.block.blockId}) }}" >add basket</a></div>
 </div>
 {% if data.root.html|default('') %}{{data.root.html}}{% endif %}
 {% endautoescape %}

@@ -24,5 +24,62 @@ class KitpagesShopCmsExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+
+        $this->remapParameters($config, $container, array(
+            'category_list'  => 'kitpages_shop_cms.category_list'
+        ));
+
+//        $this->remapParameters($config, $container, array(
+//            'subcategory_list'  => 'kitpages_shop_cms.subcategory_list'
+//        ));
+
     }
+
+    /**
+     * Dynamically remaps parameters from the config values
+     *
+     * @param array            $config
+     * @param ContainerBuilder $container
+     * @param array            $namespaces
+     * @return void
+     */
+    protected function remapParametersNamespaces(array $config, ContainerBuilder $container, array $namespaces)
+    {
+        foreach ($namespaces as $ns => $map) {
+            if ($ns) {
+                if (!isset($config[$ns])) {
+                    continue;
+                }
+                $namespaceConfig = $config[$ns];
+            } else {
+                $namespaceConfig = $config;
+            }
+            if (is_array($map)) {
+                $this->remapParameters($namespaceConfig, $container, $map);
+            } else {
+                foreach ($namespaceConfig as $name => $value) {
+                    if (null !== $value) {
+                        $container->setParameter(sprintf($map, $name), $value);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     *
+     * @param array            $config
+     * @param ContainerBuilder $container
+     * @param array            $map
+     * @return void
+     */
+    protected function remapParameters(array $config, ContainerBuilder $container, array $map)
+    {
+        foreach ($map as $name => $paramName) {
+            if (isset($config[$name])) {
+                $container->setParameter($paramName, $config[$name]);
+            }
+        }
+    }
+
 }
