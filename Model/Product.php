@@ -23,7 +23,7 @@ class Product
     ////
     public function getShopReference()
     {
-        return $this->block->getId();
+        return $this->data['reference'];
     }
     public function getShopUnitPrice()
     {
@@ -49,7 +49,7 @@ class Product
     }
     public function getShopDescription()
     {
-        return $this->data['description'];
+        return strip_tags($this->data['description']);
     }
     public function getShopData()
     {

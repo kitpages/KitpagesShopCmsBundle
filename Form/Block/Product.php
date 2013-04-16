@@ -25,32 +25,24 @@ class Product extends AbstractType
             )
         );
 
-//        $builder->add(
-//            'category',
-//            'text',
-//            array(
-//                'label' => 'Category',
-//                'required' => false,
-//                'attr' => array(
-//                    "size" => "50"
-//                )
-//            )
-//        );
-
         $builder->add(
             'category',
             'category',
             array(
                 'label' => 'Category',
-                'required' => false,
-//                'choice_list'   => array(
-//                    'Vêtement garçon-3 mois' => 'Left',
-//                    'right' => 'Right',
-//                    'top' => 'Top',
-//                    'center' => 'Centered',
-//                    'bottom' => 'Bottom',
-//                    'hidden' => 'Hidden'
-//                ),
+                'required' => false
+            )
+        );
+
+        $builder->add(
+            'reference',
+            'text',
+            array(
+                'label' => 'Reference',
+                'required' => true,
+                'attr' => array(
+                    "size" => "50"
+                )
             )
         );
 
@@ -64,6 +56,26 @@ class Product extends AbstractType
                     "size" => "50",
                 ),
                 'constraints' => new Min(array('limit' => 0))
+            )
+        );
+
+        $builder->add(
+            'visible',
+            'checkbox',
+            array(
+                'label' => 'Visible',
+                'attr'     => array('checked'   => 'checked'),
+                'required' => false,
+            )
+        );
+
+        $builder->add(
+            'inStock',
+            'checkbox',
+            array(
+                'label' => 'in stock',
+                'attr'     => array('checked'   => 'checked'),
+                'required' => false
             )
         );
 

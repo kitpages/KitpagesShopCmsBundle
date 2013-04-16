@@ -37,4 +37,17 @@ kitpages_cms:
 
 
 
+kitano_payment:
+    service:
+        payment_system: %payment.service%
+    config:
+        notification_url: "%base_url%/payment/payment-notification"
+        internal_back_to_shop_url: "%base_url%/payment/back-to-shop"
+        external_back_to_shop_url: "%base_url%/shop/back-to-shop"
+
+
+
+
+
+
 

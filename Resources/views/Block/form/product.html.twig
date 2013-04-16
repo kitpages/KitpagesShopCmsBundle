@@ -2,8 +2,6 @@
 
 {% block editData %}
 
-{#{% form_theme form 'KitpagesShopCmsBundle:Form:fields.html.twig' %}#}
-
 {{ form_row(
     form.data.root.name,
     {'help' : "Name of product"}
@@ -15,6 +13,19 @@
     {
         'help' : "Category of product (book, CD ...)"
     }
+) }}
+
+{{ form_row(
+    form.data.root.reference,
+    {'help' : "Reference of product", "value" : "ref-"~id}
+) }}
+
+{{ form_row(
+    form.data.root.visible
+) }}
+
+{{ form_row(
+    form.data.root.inStock
 ) }}
 
 {{ form_row(
