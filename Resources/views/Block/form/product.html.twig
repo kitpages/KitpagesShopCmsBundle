@@ -32,6 +32,13 @@
     form.data.root.price
 ) }}
 
+{{ form_row(
+    form.data.root.promotion,
+    {
+        'help' : "If not null, "
+    }
+) }}
+
 <div>
     <label>Télécharger l'image</label>
     {{ form_widget(form.data.root.media_mainImage) }}

@@ -1,3 +1,7 @@
 KitpagesShopCmsBundlee_addToCart:
     pattern: /shop/addToCart/{blockId}
     defaults: { _controller: KitpagesShopCmsBundle:Product:addToCart }
+
+KitpagesShopCmsBundlee_productDetail:
+    pattern:  /product-detail/{slug}
+    defaults: { _controller: KitpagesShopCmsBundle:Product:productDetail }

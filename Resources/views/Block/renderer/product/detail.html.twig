@@ -1,0 +1,101 @@
+{% autoescape false %}
+<div class="app-block-standard [[cms:parameter:firstLastClass]] {{data.root.block_presentation|default('')}}">
+    {% set img = data.media.mainImage.0.default|default('') %}
+    {% set imgPos = data.root.imagePosition|default('top') %}
+
+    {% if (imgPos == "left") or (imgPos == "right") %}
+    {% if img %}
+    {% if data.root.image_url|default('') %}<a href="{{data.root.image_url}}">{% endif %}
+    <img src="{{img.url}}" class="app-block-img app-block-img-position-{{imgPos}}" style="display: block; float: {{imgPos}};"/>
+    {% if data.root.image_url|default('') %}</a>{% endif %}
+    {% endif %}
+    {% endif %}
+
+
+    {% if data.root.name|default('') %}<h2>{{data.root.name}}</h2>{% endif %}
+    {% if data.root.category|default('') %}<h3>{{data.root.category}} {% if data.root.subcategory|default('') %}- {{data.root.subcategory}} {% endif %}</h3>{% endif %}
+
+    {#{% if (imgPos == "left") or (imgPos == "right") %}#}
+    {#{% if img %}#}
+    {#{% if data.root.image_url|default('') %}<a href="{{data.root.image_url}}">{% endif %}#}
+    {#<img src="{{img.url}}" class="app-block-img app-block-img-position-{{imgPos}}" style="display: block; float: {{imgPos}};"/>#}
+    {#{% if data.root.image_url|default('') %}</a>{% endif %}#}
+    {#{% endif %}#}
+    {#{% endif %}#}
+
+
+    {% if imgPos == "top" %}
+    {% if img %}
+    {% if data.root.image_url|default('') %}<a href="{{data.root.image_url}}">{% endif %}
+    <img class="app-block-img" src="{{img.url}}"/>
+    {% if data.root.image_url|default('') %}</a>{% endif %}
+    {% endif %}
+    {% endif %}
+    {% if imgPos == "center" %}
+    {% if img %}<div style="text-align: center;">
+    {% if data.root.image_url|default('') %}<a href="{{data.root.image_url}}">{% endif %}
+    <img class="app-block-img" src="{{img.url}}"/>
+    {% if data.root.image_url|default('') %}</a>{% endif %}
+    {% endif %}
+    {% endif %}
+
+
+    {% if data.root.description|default('') %}<div>{{data.root.description}}</div>{%endif%}
+    {% if data.root.subContent|default('') %}<div>{{data.root.subContent}}</div>{%endif%}
+
+    {% if data.root.promotion|default('') %}
+        <div class="kit-shop-cms-price-promotion"><span class="kit-shop-cms-price-promotion-old">{{data.root.price}} &euro;</span> {{data.root.promotion}} &euro;</div>
+    {% else %}
+        <div class="kit-shop-cms-price">{{data.root.price}} &euro;</div>
+    {% endif %}
+    <a href="{{ path ("KitpagesShopCmsBundlee_addToCart", {"blockId": data.block.blockId}) }}" >add basket</a>
+    {% if ( (imgPos == "left") or (imgPos == "right") ) and (img) %}
+    <div style="clear:{{imgPos}};"></div>
+    {% endif %}
+
+    {% if imgPos == "bottom" %}
+    {% if img %}
+    {% if data.root.image_url|default('') %}<a href="{{data.root.image_url}}">{% endif %}
+    <img class="app-block-img" src="{{img.url}}"/>
+    {% if data.root.image_url|default('') %}</a>{% endif %}
+    {% endif %}
+    {% endif %}
+
+    {% if data.root.displaySeparator|default('NO') == "YES" %}<div class="app-separator"></div>{% endif %}
+</div>
+{% if data.root.html|default('') %}{{data.root.html}}{% endif %}
+{% endautoescape %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+{#{% autoescape false %}#}
+{#<div class="app-block-standard [[cms:parameter:firstLastClass]] {{data.root.block_presentation|default('')}}">#}
+    {#{% set img = data.media.mainImage.0.default|default('') %}#}
+    {#{% if img %}#}
+        {#{% if data.root.image_url|default('') %}<a href="{{data.root.image_url}}">{% endif %}#}
+            {#<img class="app-block-img" src="{{img.url}}"/>#}
+        {#{% if data.root.image_url|default('') %}</a>{% endif %}#}
+    {#{% endif %}#}
+    {#<a href="{{ path('KitpagesShopCmsBundlee_productDetail', { "slug" : data.block.slug } ) }}">#}
+    {##}
+    {#</a>#}
+    {##}
+
+
+
+    {##}
+
+
+{#</div>#}
+{#{% if data.root.html|default('') %}{{data.root.html}}{% endif %}#}
+{#{% endautoescape %}#}

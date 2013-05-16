@@ -35,4 +35,41 @@ class ProductController extends Controller
 
     }
 
+    public function productDetailAction($slug)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $pageRepository = $em->getRepository('KitpagesCmsBundle:Page');
+        $pageForNav = $pageRepository->findOneBySlug('product-link');
+
+        $kitCmsPageData = array(
+            "root" => array(
+                "metaTitle" => "",
+                "metaDescription" => "",
+            )
+        );
+
+        // get title
+        $blockRepository = $em->getRepository('KitpagesCmsBundle:BlockPublish');
+        $blockPublish = $blockRepository->findBySlugAndRenderer($slug, "detail");
+        if ($blockPublish instanceof BlockPublish) {
+            $dataPub = $blockPublish->getData();
+            $kitCmsPageData = array(
+                "root" => array(
+                    "metaTitle" => "Product - ".strip_tags($dataPub["root"]["title"]),
+                    "metaDescription" => "Product - ".strip_tags($dataPub["root"]["shortContent"])
+                )
+            );
+        }
+
+
+        return $this->render(
+            'KitpagesShopCmsBundle:Product:product-detail.html.twig',
+            array(
+                'kitCmsPage' => $pageForNav,
+                'kitCmsPageData' => $kitCmsPageData,
+                'slug' => $slug,
+            )
+        );
+    }
+
 }

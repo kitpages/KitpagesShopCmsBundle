@@ -60,6 +60,19 @@ class Product extends AbstractType
         );
 
         $builder->add(
+            'promotion',
+            'text',
+            array(
+                'label' => 'Promotion',
+                'required' => false,
+                'attr' => array(
+                    "size" => "50",
+                ),
+                'constraints' => new Min(array('limit' => 0))
+            )
+        );
+
+        $builder->add(
             'visible',
             'checkbox',
             array(

@@ -1,0 +1,9 @@
+{% extends 'KitpagesCmsBundle:Page:layout.html.twig' %}
+
+{% block body %}
+
+<div class="layout-inside-main">
+    {% render 'KitpagesCmsBundle:Block:widget' with {'slug': slug, 'renderer': 'detail' } %}
+</div>
+<div style="clear:both;"></div>
+{% endblock body %}

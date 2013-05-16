@@ -27,7 +27,10 @@ class Product
     }
     public function getShopUnitPrice()
     {
-        return $this->data['price'];
+        if ($this->data['promotion'] == null )
+            return $this->data['price'];
+        else
+            return $this->data['promotion'];
     }
     public function getShopUnitVat($countryCode)
     {
